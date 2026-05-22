@@ -2023,8 +2023,20 @@ function renderContacts() {
     const people = [d.contact, d.altContact, d.fiscalReporter, d.planApprover].filter(Boolean);
     const extras = Array.isArray(d.additionalContacts) ? d.additionalContacts : [];
     const all = [...people, ...extras];
-    const withPhoto = all.filter(p => p.photo);
-    const withoutPhoto = all.filter(p => !p.photo);
+    // Dedupe by email so one person with multiple roles renders as a single card
+    const byEmail = new Map();
+    all.forEach(p => {
+      const key = (p.email || p.name).toLowerCase();
+      if (!byEmail.has(key)) {
+        byEmail.set(key, { ...p, roles: [translateRole(p.role)] });
+      } else {
+        const ex = byEmail.get(key);
+        if (!ex.roles.includes(translateRole(p.role))) ex.roles.push(translateRole(p.role));
+      }
+    });
+    const merged = Array.from(byEmail.values());
+    const withPhoto = merged.filter(p => p.photo);
+    const withoutPhoto = merged.filter(p => !p.photo);
     return [...withPhoto, ...withoutPhoto].map(p => {
       const photoBlock = p.photo
         ? `<div class="contact-photo"><div class="contact-photo-initials">${initials(p.name)}</div><img src="${p.photo}" alt="${p.name}" loading="lazy"/></div>`
@@ -2036,7 +2048,7 @@ function renderContacts() {
         <div class="contact-card-body">
           <div class="contact-card-name">${p.name}</div>
           <div class="contact-card-title">${p.title || translateRole(p.role)}</div>
-          <div class="contact-card-role">${translateRole(p.role)}</div>
+          <div class="contact-card-role">${p.roles ? p.roles.join(" · ") : translateRole(p.role)}</div>
           <div class="contact-card-divider"></div>
           <div class="contact-card-links">
             <a class="contact-card-link" href="mailto:${p.email}">${mailIcon}<span>${p.email}</span></a>
