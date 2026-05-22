@@ -1816,17 +1816,14 @@ function showSection(id, clickedBtn, isMobile) {
       const label = navText.trim();
       if (label) document.title = label + ' · ' + baseTitle;
     } catch (e) {}
-    localStorage.setItem('kernActiveSection', id);
   } catch (e) { /* no-op */ }
 }
 
-// Pick the section to show on initial load: URL hash → localStorage → default
+// Pick the section to show on initial load: URL hash → default. The bare URL always lands on Overview.
 function resolveInitialSection() {
   try {
     const hash = (window.location.hash || '').replace(/^#/, '').trim();
     if (hash && document.getElementById('section-' + hash)) return hash;
-    const stored = localStorage.getItem('kernActiveSection');
-    if (stored && document.getElementById('section-' + stored)) return stored;
   } catch (e) { /* no-op */ }
   return 'overview';
 }
