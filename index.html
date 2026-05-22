@@ -509,15 +509,7 @@
     /* Overview hero card — wraps title + ticker on dark slate */
     .overview-hero { background:var(--bg-surface); border-radius:var(--radius-lg); padding:18px 26px 18px; margin-bottom:24px; box-shadow:var(--shadow-sm); border:1px solid var(--border); border-left:3px solid var(--peralta-gold); position:relative; }
     .overview-hero-text { position:relative; }
-    .overview-hero-text h2 { padding-right:64px; }
-    .overview-hero-text .overview-ticker { padding-right:60px; }
-    .overview-hero-avatar { position:absolute; right:6px; top:4px; width:54px; height:54px; pointer-events:none; border-radius:50%; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.15), 0 0 0 1px var(--border); background:#f6f4ef; perspective:520px; }
-    .overview-hero-avatar .vr-woman { width:100%; height:100%; display:block; overflow:visible; }
-    .vr-woman .vrw-breath { transform-origin:100px 100px; animation:vrw-breath 5.6s ease-in-out infinite; }
-    .vr-woman .vrw-head   { transform-origin:100px 110px; transform-box:fill-box; transform-style:preserve-3d; transition:transform 0.35s cubic-bezier(.4,.0,.2,1); will-change:transform; }
-    .vr-woman .vrw-catch  { animation:vrw-catch 4.6s ease-in-out infinite; }
-    .vr-woman .vrw-led    { animation:vrw-led 2.6s ease-in-out infinite; }
-    @media (max-width:560px) { .overview-hero { padding:16px 18px 14px; } .overview-hero-text h2 { padding-right:52px; } .overview-hero-text .overview-ticker { padding-right:48px; } .overview-hero-avatar { width:44px; height:44px; right:4px; top:4px; } }
+    @media (max-width:560px) { .overview-hero { padding:16px 18px 14px; } }
     .overview-hero h2 { font-family:var(--font-display); font-size:26px; font-weight:600; color:var(--text-primary); line-height:1.2; margin:0; letter-spacing:-0.02em; }
     .overview-hero .overview-ticker { margin-top:12px; }
     [data-theme="dark"] .overview-hero { background:var(--bg-card); border-left-color:var(--peralta-gold); }
@@ -610,19 +602,6 @@
     html[data-a11y-spacing="on"] body { line-height:1.85; letter-spacing:0.02em; word-spacing:0.06em; }
     html[data-a11y-guide="on"] .a11y-reading-guide { display:block; }
     .a11y-reading-guide { position:fixed; left:0; right:0; height:34px; background:rgba(255,221,0,0.20); border-top:1px solid rgba(255,180,0,0.5); border-bottom:1px solid rgba(255,180,0,0.5); pointer-events:none; z-index:998; display:none; }
-    /* Program Overview avatar — realistic cartoon with interactive head loop */
-    @keyframes vrw-breath { 0%, 100% { transform:scale(1); } 50% { transform:scale(1.018); } }
-    @keyframes vrw-catch {
-      0%, 100% { opacity:0.92; }
-      30%      { opacity:0.55; }
-      50%      { opacity:0.1; }    /* implied blink */
-      55%      { opacity:0.85; }
-      75%      { opacity:0.6; }
-    }
-    @keyframes vrw-led   { 0%, 100% { opacity:0.95; } 50% { opacity:0.55; } }
-    @media (prefers-reduced-motion: reduce) {
-      .vr-woman .vrw-breath, .vr-woman .vrw-head, .vr-woman .vrw-catch, .vr-woman .vrw-led { animation:none; }
-    }
   </style>
 </head>
 <body>
@@ -741,205 +720,7 @@
               </div>
             </div>
           </div>
-          <div class="overview-hero-avatar" role="img" aria-label="Animated cartoon portrait of a person wearing a white VR headset, head looks left, right, and up on a loop">
-            <svg id="vrwAvatar" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="vr-woman" aria-hidden="true">
-              <defs>
-                <!-- ===== Realistic skin shading (multi-stop with subsurface warmth) ===== -->
-                <radialGradient id="vrwSkinBase" cx="46%" cy="42%" r="68%">
-                  <stop offset="0%"   stop-color="#fbdbb1"/>
-                  <stop offset="40%"  stop-color="#e6b18a"/>
-                  <stop offset="78%"  stop-color="#9d6e4b"/>
-                  <stop offset="100%" stop-color="#5a371f"/>
-                </radialGradient>
-                <radialGradient id="vrwSkinKey" cx="40%" cy="30%" r="40%">
-                  <stop offset="0%"   stop-color="#fff1d8" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#fff1d8" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="vrwSkinFill" cx="68%" cy="62%" r="48%">
-                  <stop offset="0%"   stop-color="#a06038" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#a06038" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="vrwSkinCheek" cx="50%" cy="55%" r="55%">
-                  <stop offset="0%"   stop-color="#e9836b" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#e9836b" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="vrwSkinJaw" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#3a1f12" stop-opacity="0.42"/>
-                </linearGradient>
-                <linearGradient id="vrwSkinTemple" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%"   stop-color="#5e3920" stop-opacity="0.5"/>
-                  <stop offset="22%"  stop-color="#5e3920" stop-opacity="0"/>
-                  <stop offset="78%"  stop-color="#5e3920" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#5e3920" stop-opacity="0.5"/>
-                </linearGradient>
-                <!-- ===== Hair ===== -->
-                <linearGradient id="vrwHair" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#2e1a10"/>
-                  <stop offset="55%"  stop-color="#170c06"/>
-                  <stop offset="100%" stop-color="#080302"/>
-                </linearGradient>
-                <linearGradient id="vrwHairShine" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#8c5530" stop-opacity="0.85"/>
-                  <stop offset="100%" stop-color="#8c5530" stop-opacity="0"/>
-                </linearGradient>
-                <!-- ===== Vision-Pro WHITE headset ===== -->
-                <linearGradient id="vrwHsBody" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#ffffff"/>
-                  <stop offset="40%"  stop-color="#f1f3f6"/>
-                  <stop offset="80%"  stop-color="#d9dde2"/>
-                  <stop offset="100%" stop-color="#aeb4bb"/>
-                </linearGradient>
-                <linearGradient id="vrwHsHi" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%"   stop-color="#b9bec5"/>
-                  <stop offset="50%"  stop-color="#ffffff"/>
-                  <stop offset="100%" stop-color="#b9bec5"/>
-                </linearGradient>
-                <linearGradient id="vrwHsRim" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#2a2f35" stop-opacity="0.45"/>
-                </linearGradient>
-                <linearGradient id="vrwGlass" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#3a414c"/>
-                  <stop offset="22%"  stop-color="#1c2330"/>
-                  <stop offset="60%"  stop-color="#0a0e16"/>
-                  <stop offset="100%" stop-color="#04060b"/>
-                </linearGradient>
-                <linearGradient id="vrwGlassReflect" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-                <radialGradient id="vrwLens" cx="38%" cy="32%" r="76%">
-                  <stop offset="0%"   stop-color="#cfeaff"/>
-                  <stop offset="22%"  stop-color="#4ea7f2"/>
-                  <stop offset="60%"  stop-color="#0c3f7b"/>
-                  <stop offset="92%"  stop-color="#03102a"/>
-                  <stop offset="100%" stop-color="#010512"/>
-                </radialGradient>
-                <radialGradient id="vrwLensRim" cx="50%" cy="50%" r="55%">
-                  <stop offset="78%"  stop-color="#000" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#000" stop-opacity="0.7"/>
-                </radialGradient>
-                <linearGradient id="vrwStrap" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#eceae5"/>
-                  <stop offset="100%" stop-color="#b8b4ab"/>
-                </linearGradient>
-                <linearGradient id="vrwFoam" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stop-color="#2a2a2e"/>
-                  <stop offset="100%" stop-color="#0e0e10"/>
-                </linearGradient>
-                <filter id="vrwSoft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="0.45"/></filter>
-                <filter id="vrwLed"  x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                <filter id="vrwShadow" x="-20%" y="-20%" width="140%" height="160%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/><feOffset dx="0" dy="1.4"/><feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-              </defs>
-
-              <!-- soft frame background -->
-              <rect x="0" y="0" width="200" height="200" fill="#f4f1ea"/>
-
-              <g class="vrw-breath">
-                <g class="vrw-head">
-
-                  <!-- Hair halo -->
-                  <path d="M46,82 Q48,40 100,36 Q152,40 154,82 L156,134 Q132,142 100,142 Q68,142 44,134 Z" fill="url(#vrwHair)"/>
-                  <path d="M56,62 Q92,38 100,38 Q108,38 144,62 Q108,52 100,52 Q92,52 56,62 Z" fill="url(#vrwHairShine)" opacity="0.6"/>
-                  <path d="M46,98 Q40,138 60,144 L74,142 Q70,118 72,96 Z" fill="url(#vrwHair)"/>
-                  <path d="M154,98 Q160,138 140,144 L126,142 Q130,118 128,96 Z" fill="url(#vrwHair)"/>
-                  <!-- baby hairs -->
-                  <path d="M62,68 Q72,64 82,68" stroke="#0e0805" stroke-width="0.8" fill="none" opacity="0.65"/>
-                  <path d="M118,68 Q128,64 138,68" stroke="#0e0805" stroke-width="0.8" fill="none" opacity="0.65"/>
-
-                  <!-- Face: base + key light + fill shadow + temple shading -->
-                  <path d="M66,80 Q66,50 100,50 Q134,50 134,80 L132,116 Q126,138 100,140 Q74,138 68,116 Z" fill="url(#vrwSkinBase)" filter="url(#vrwSoft)"/>
-                  <ellipse cx="86" cy="74" rx="18" ry="14" fill="url(#vrwSkinKey)"/>
-                  <ellipse cx="118" cy="116" rx="18" ry="14" fill="url(#vrwSkinFill)"/>
-                  <path d="M66,68 L134,68 L132,118 Q100,138 68,118 Z" fill="url(#vrwSkinTemple)"/>
-                  <ellipse cx="80" cy="112" rx="6.2" ry="3.8" fill="url(#vrwSkinCheek)"/>
-                  <ellipse cx="120" cy="112" rx="6.2" ry="3.8" fill="url(#vrwSkinCheek)"/>
-                  <!-- cheekbone highlights -->
-                  <ellipse cx="82" cy="106" rx="6" ry="3.4" fill="#fff1d6" opacity="0.4"/>
-                  <ellipse cx="118" cy="106" rx="6" ry="3.4" fill="#fff1d6" opacity="0.4"/>
-                  <!-- Jawline shadow -->
-                  <path d="M68,118 Q100,138 132,118 L130,128 Q100,142 70,128 Z" fill="url(#vrwSkinJaw)"/>
-
-                  <!-- Ears (subtle) -->
-                  <path d="M64,90 Q60,98 62,108 Q66,114 74,112 L74,88 Z" fill="url(#vrwSkinBase)"/>
-                  <path d="M64,93 Q63,100 64,107" stroke="#6b3f25" stroke-width="0.6" fill="none" opacity="0.55"/>
-                  <path d="M136,90 Q140,98 138,108 Q134,114 126,112 L126,88 Z" fill="url(#vrwSkinBase)"/>
-                  <path d="M136,93 Q137,100 136,107" stroke="#6b3f25" stroke-width="0.6" fill="none" opacity="0.55"/>
-
-                  <!-- Bangs over forehead -->
-                  <path d="M64,66 Q86,46 100,46 Q116,46 136,68 Q116,56 100,56 Q86,56 64,66 Z" fill="url(#vrwHair)"/>
-
-                  <!-- Eyebrows (multi-stroke for realism) -->
-                  <path d="M74,72 Q86,66 96,72" stroke="#1c0e07" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-                  <path d="M77,71 Q83,68 89,70" stroke="#1c0e07" stroke-width="0.6" fill="none" opacity="0.75"/>
-                  <path d="M104,72 Q114,66 126,72" stroke="#1c0e07" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-                  <path d="M111,70 Q117,68 123,71" stroke="#1c0e07" stroke-width="0.6" fill="none" opacity="0.75"/>
-
-                  <!-- Nose: cartoon-realistic with one-sided lighting -->
-                  <path d="M97,104 Q96,114 98,118.5 Q100,120 102,118.5 Q104,114 103,104 Z" fill="#c79172" opacity="0.6"/>
-                  <path d="M97,104 Q96,114 98,118 L99,114 Q98,109 98,104 Z" fill="#ffe1b8" opacity="0.6"/>
-                  <path d="M103,104 Q104,114 102,118 L101,114 Q102,109 102,104 Z" fill="#7a4630" opacity="0.4"/>
-                  <ellipse cx="98.2" cy="118.6" rx="0.8" ry="0.5" fill="#5a3320" opacity="0.55"/>
-                  <ellipse cx="101.8" cy="118.6" rx="0.8" ry="0.5" fill="#5a3320" opacity="0.55"/>
-
-                  <!-- Lips: natural -->
-                  <path d="M88,124 Q100,121 112,124 Q107,131 100,131.5 Q93,131 88,124 Z" fill="#b5604a"/>
-                  <path d="M88.6,124.4 Q100,125.4 111.4,124.4" stroke="#5a2818" stroke-width="0.55" fill="none" opacity="0.55"/>
-                  <path d="M93,129 Q100,129.6 107,129" stroke="#ffffff" stroke-width="0.35" fill="none" opacity="0.35"/>
-                  <path d="M89,124 Q95,123 100,124.5 Q105,123 111,124" stroke="#8a3a26" stroke-width="0.5" fill="none" opacity="0.5"/>
-
-                  <!-- chin shadow -->
-                  <path d="M90,134 Q100,138 110,134" stroke="#5a3320" stroke-width="0.5" fill="none" opacity="0.35"/>
-
-                  <!-- ===== Vision-Pro WHITE headset ===== -->
-                  <ellipse cx="100" cy="100" rx="48" ry="8" fill="#000" opacity="0.16"/>
-                  <!-- Strap behind -->
-                  <path d="M46,76 Q38,86 42,98 Q48,104 56,102 L72,96 Q66,86 66,76 Z" fill="url(#vrwStrap)"/>
-                  <path d="M154,76 Q162,86 158,98 Q152,104 144,102 L128,96 Q134,86 134,76 Z" fill="url(#vrwStrap)"/>
-                  <path d="M46,80 Q20,90 20,108 Q24,124 50,128" stroke="url(#vrwStrap)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
-                  <path d="M154,80 Q180,90 180,108 Q176,124 150,128" stroke="url(#vrwStrap)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
-
-                  <!-- White face plate -->
-                  <path d="M58,74 Q62,66 74,64 L126,64 Q138,66 142,74 L143,98 Q138,108 126,110 L74,110 Q62,108 57,98 Z" fill="url(#vrwHsBody)" filter="url(#vrwShadow)"/>
-                  <path d="M58,74 Q62,66 74,64 L126,64 Q138,66 142,74 L142,78 Q100,70 58,78 Z" fill="url(#vrwHsHi)" opacity="0.7"/>
-                  <path d="M58,98 Q100,108 142,98 L143,104 Q100,114 57,104 Z" fill="url(#vrwHsRim)"/>
-
-                  <!-- Visor glass -->
-                  <path d="M66,78 Q70,72 78,72 L122,72 Q130,72 134,78 L134,96 Q130,102 122,102 L78,102 Q70,102 66,96 Z" fill="url(#vrwGlass)"/>
-                  <path d="M68,78 Q72,72.5 78,72.5 L122,72.5 Q128,72.5 132,78 L132,82 Q100,76 68,82 Z" fill="url(#vrwGlassReflect)"/>
-                  <path d="M76,72 L96,100 L92,100 L72,76 Z" fill="#ffffff" opacity="0.06"/>
-                  <path d="M94,102 Q100,106 106,102 L106,98 Q100,100 94,98 Z" fill="#050709"/>
-
-                  <!-- Lens wells with internal pupil parallax targets -->
-                  <ellipse cx="82" cy="86" rx="9.6" ry="7.4" fill="#020610"/>
-                  <ellipse cx="82" cy="86" rx="7.6" ry="5.8" fill="url(#vrwLens)"/>
-                  <ellipse cx="82" cy="86" rx="7.6" ry="5.8" fill="url(#vrwLensRim)"/>
-                  <ellipse class="vrw-pupil" data-cx="82" data-cy="86" cx="82" cy="86" rx="1.6" ry="1.6" fill="#0a1e3a" opacity="0.85"/>
-                  <ellipse class="vrw-catch" cx="79" cy="83" rx="2.4" ry="1.4" fill="#ffffff" opacity="0.92"/>
-
-                  <ellipse cx="118" cy="86" rx="9.6" ry="7.4" fill="#020610"/>
-                  <ellipse cx="118" cy="86" rx="7.6" ry="5.8" fill="url(#vrwLens)"/>
-                  <ellipse cx="118" cy="86" rx="7.6" ry="5.8" fill="url(#vrwLensRim)"/>
-                  <ellipse class="vrw-pupil" data-cx="118" data-cy="86" cx="118" cy="86" rx="1.6" ry="1.6" fill="#0a1e3a" opacity="0.85"/>
-                  <ellipse class="vrw-catch" cx="115" cy="83" rx="2.4" ry="1.4" fill="#ffffff" opacity="0.92"/>
-
-                  <!-- Foam liner -->
-                  <path d="M62,104 Q100,112 138,104 L137,109 Q100,116 63,109 Z" fill="url(#vrwFoam)"/>
-                  <path d="M64,106 Q100,113 136,106" stroke="#46464c" stroke-width="0.5" fill="none" opacity="0.75"/>
-
-                  <!-- Strap mount caps -->
-                  <rect x="54" y="78" width="9" height="16" rx="2.6" fill="#d6dadf"/>
-                  <rect x="55" y="79" width="2.6" height="4" rx="0.8" fill="#ffffff" opacity="0.9"/>
-                  <rect x="137" y="78" width="9" height="16" rx="2.6" fill="#d6dadf"/>
-                  <rect x="142.4" y="79" width="2.6" height="4" rx="0.8" fill="#ffffff" opacity="0.9"/>
-
-                  <!-- Power LED -->
-                  <circle class="vrw-led" cx="143" cy="91" r="1.1" fill="#22ff7a" filter="url(#vrwLed)"/>
-                </g>
-              </g>
-            </svg>
-          </div>
+          
         </div>
 
         <div class="grant-meta">
@@ -2159,7 +1940,7 @@ function renderBudget() {
   ];
   const Y1_TOTAL = d.yearlyBudget.y1;
   const Y2_TOTAL = d.yearlyBudget.y2;
-  const Y1_NOTE = 'Y1 (18 months) is hardware-heavy: VR headsets and peripherals for Berkeley City, Alameda, Laney, and Merritt dominate the 4000 line; faculty stipends and the first peer-mentor cohort launch in Fall 2026.';
+  const Y1_NOTE = 'Y1 (Jul 2025 – Jun 2026) is platform-launch heavy: Mentor & Match Professional Platform setup, training curriculum development, and the first pilot mentor cohorts at Berkeley City, Alameda, Laney, and Merritt; District staff stipends and campus liaisons stand up in Year 1.';
   const Y2_NOTE = 'Y2 (12 months) emphasizes services (Unity / VR creation training, dissemination, final showcase) plus supplemental hardware and Faculty Innovation Stipends.';
   const renderLines = (rows, total) => rows.map(r => {
     const isIndirect = r.code === '7000';
@@ -2762,65 +2543,5 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
-<script>
-/* === Realistic VR avatar — interactive head + eye tracking === */
-(function(){
-  const avatar = document.getElementById('vrwAvatar');
-  if (!avatar) return;
-  const head   = avatar.querySelector('.vrw-head');
-  const pupils = avatar.querySelectorAll('.vrw-pupil');
-  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-  let activeUntil = 0;
-  function easeTowards(curr, target, k){ return curr + (target - curr) * k; }
-  let curYaw = 0, curPitch = 0, tgtYaw = 0, tgtPitch = 0;
-  let pupilDX = 0, pupilDY = 0;
-  function loop(){
-    curYaw   = easeTowards(curYaw,   tgtYaw,   0.15);
-    curPitch = easeTowards(curPitch, tgtPitch, 0.15);
-    head.style.transform = `perspective(520px) rotateY(${curYaw}deg) rotateX(${curPitch}deg)`;
-    pupils.forEach(p => {
-      const cx = parseFloat(p.dataset.cx);
-      const cy = parseFloat(p.dataset.cy);
-      p.setAttribute('cx', cx + pupilDX);
-      p.setAttribute('cy', cy + pupilDY);
-    });
-    requestAnimationFrame(loop);
-  }
-  loop();
-  function onMove(e){
-    const r = avatar.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width/2)) / r.width;   // -1..+1 range when within ~one width
-    const dy = (e.clientY - (r.top  + r.height/2)) / r.height;
-    tgtYaw   = Math.max(-28, Math.min(28, dx * 60));
-    tgtPitch = Math.max(-14, Math.min(20, -dy * 30));
-    pupilDX  = Math.max(-1.6, Math.min(1.6, dx * 2.4));
-    pupilDY  = Math.max(-1.2, Math.min(1.2, dy * 1.8));
-    activeUntil = Date.now() + 2000;
-  }
-  document.addEventListener('mousemove', onMove, {passive:true});
-  /* Idle loop: when cursor is quiet, glance around naturally */
-  const idlePoses = [
-    {y: 0,   p:  0,  px:0,   py:0},
-    {y: -22, p:  0,  px:-1.4,py:0},
-    {y:  0,  p:  0,  px:0,   py:0},
-    {y:  22, p:  0,  px: 1.4,py:0},
-    {y:  0,  p:  0,  px:0,   py:0},
-    {y:  0,  p: 18,  px:0,   py:-1.0},
-    {y:  0,  p:  0,  px:0,   py:0},
-  ];
-  let idleIdx = 0;
-  function idleStep(){
-    if (Date.now() < activeUntil) return;
-    const pose = idlePoses[idleIdx % idlePoses.length];
-    tgtYaw   = pose.y;
-    tgtPitch = pose.p;
-    pupilDX  = pose.px;
-    pupilDY  = pose.py;
-    idleIdx++;
-  }
-  setInterval(idleStep, 1500);
-})();
-</script>
 </body>
 </html>
