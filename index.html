@@ -16,7 +16,7 @@
   <meta name="description" content="Peralta Community College District — Mentor Match Program dashboard. $100,000 Tier 2 / LIFT award under the 2025–2028 EEO Innovative Best Practices initiative. Two-year, multi-college VR faculty development and peer mentoring across Berkeley City, Alameda, Laney, and Merritt." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
@@ -60,7 +60,7 @@
       --tier2-color:#357CAC; --tier2-bg:rgba(53,124,172,0.08);
       --lift-color:#B10B2D; --lift-bg:rgba(177,11,45,0.08);
       --success:#1a7a3c; --success-bg:rgba(26,122,60,0.08);
-      --font-display:'Crimson Text',Georgia,serif; --font-body:'Source Sans 3','Helvetica Neue',sans-serif;
+      --font-display:'Avenir Next','Avenir','Open Sans','Helvetica Neue',sans-serif; --font-body:'Open Sans','Helvetica Neue','Avenir Next','Avenir',sans-serif;
       --sidebar-w:240px; --header-h:64px; --mobile-nav-h:60px; --content-max:1280px;
       --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-xl:20px;
       --shadow-sm:0 1px 3px rgba(15,23,42,0.08),0 1px 2px rgba(15,23,42,0.04);
@@ -72,10 +72,10 @@
       --bg:#0F172A; --bg-surface:#1E293B; --bg-surface-2:#293548; --bg-card:#1E293B;
       --border:rgba(64,180,229,0.15); --border-strong:rgba(64,180,229,0.28);
       --text-primary:#F3F4F6; --text-secondary:#CBD5E1; --text-muted:#94A3B8; --text-on-dark:#FFFFFF;
-      --accent:#40B4E5; --accent-hover:#5EC5F0; --accent-light:#40B4E5;
-      --tier1-color:#40B4E5; --tier1-bg:rgba(64,180,229,0.12);
+      --accent:#5F8AC8; --accent-hover:#5EC5F0; --accent-light:#5F8AC8;
+      --tier1-color:#5F8AC8; --tier1-bg:rgba(64,180,229,0.12);
       --tier2-color:#5EC5F0; --tier2-bg:rgba(94,197,240,0.10);
-      --lift-color:#FFB600; --lift-bg:rgba(255,182,0,0.14);
+      --lift-color:#AA9767; --lift-bg:rgba(255,182,0,0.14);
       --success:#4CAF72; --success-bg:rgba(76,175,114,0.12);
       --shadow-sm:0 1px 3px rgba(0,0,0,0.25); --shadow-md:0 4px 12px rgba(0,0,0,0.35); --shadow-lg:0 12px 32px rgba(0,0,0,0.45);
     }
@@ -250,7 +250,7 @@
     .district-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); overflow:hidden; transition:box-shadow var(--transition),transform var(--transition); cursor:pointer; }
     .district-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
     .district-card-top { padding:16px 18px 14px; background:var(--ccc-dark-blue); position:relative; }
-    .district-card-top.lift-card { background:linear-gradient(135deg,#002F6D 0%,#003F8A 100%); }
+    .district-card-top.lift-card { background:linear-gradient(135deg,#004a88 0%,#003F8A 100%); }
     .district-card-name { font-family:var(--font-display); font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; line-height:1.2; }
     .district-card-program { font-size:12.5px; color:rgba(255,255,255,0.88); line-height:1.5; }
     .district-card-lift-tag { position:absolute; top:12px; right:14px; background:var(--ccc-gold); color:var(--ccc-dark-blue); font-size:10px; font-weight:800; padding:2px 8px; border-radius:12px; letter-spacing:0.04em; }
@@ -486,7 +486,7 @@
     .cccco-wordmark--white { filter:drop-shadow(0 1px 2px rgba(0,0,0,0.08)); }
     .kern-logo-link { display:block; text-decoration:none; margin:0 0 14px; line-height:0; -webkit-tap-highlight-color:transparent; }
     .kern-logo-link:focus-visible { outline:2px solid var(--peralta-gold); outline-offset:6px; border-radius:6px; }
-    .kern-logo-mark { display:block; width:auto; max-width:100%; height:42px; image-rendering:-webkit-optimize-contrast; image-rendering:crisp-edges; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35)); }
+    .kern-logo-mark { display:block; width:auto; max-width:100%; height:54px; image-rendering:-webkit-optimize-contrast; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35)); }
     .logo-divider { height:1px; background:linear-gradient(90deg, rgba(255,255,255,0.28), rgba(255,255,255,0.05)); margin:12px 0 12px; width:100%; }
     .logo-attribution { font-size:11px; color:rgba(255,255,255,0.7); letter-spacing:0.04em; margin-top:8px; line-height:1.45; font-weight:500; }
     .cccco-topbar-stamp { display:inline-flex; align-items:center; padding:6px 14px; height:44px; border-radius:22px; border:1px solid var(--border); background:var(--bg-surface); box-shadow:0 1px 2px rgba(0,47,109,0.04); transition:box-shadow .15s ease, border-color .15s ease; }
@@ -542,7 +542,7 @@
     .a11y-modal-title { font-family:var(--font-display),Crimson Text,Georgia,serif; font-size:20px; font-weight:600; color:#0f172a; margin:0; letter-spacing:-0.01em; }
     .a11y-modal-close { width:32px; height:32px; padding:0; display:inline-flex; align-items:center; justify-content:center; background:transparent; border:none; color:#475569; cursor:pointer; border-radius:6px; }
     .a11y-modal-close:hover { background:#f1f5f9; color:#0f172a; }
-    .a11y-modal-close:focus-visible { outline:2px solid #0066BA; outline-offset:2px; }
+    .a11y-modal-close:focus-visible { outline:2px solid #416BA9; outline-offset:2px; }
     .a11y-modal-sub { font-size:13px; color:#475569; margin:0 0 14px; line-height:1.45; }
     .a11y-modal-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
     .a11y-modal-list li { margin:0; }
@@ -550,7 +550,7 @@
     .a11y-opt:hover { border-color:#94a3b8; background:#f8fafc; }
     .a11y-opt[aria-pressed="true"] { background:#0f172a; border-color:#0f172a; color:#fff; }
     .a11y-opt[aria-pressed="true"] .a11y-opt-state { color:#fff; }
-    .a11y-opt:focus-visible { outline:2px solid #0066BA; outline-offset:2px; }
+    .a11y-opt:focus-visible { outline:2px solid #416BA9; outline-offset:2px; }
     .a11y-opt-state { font-size:11.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#94a3b8; }
     .a11y-opt[aria-pressed="true"] .a11y-opt-state::after { content:"On"; }
     .a11y-opt:not([aria-pressed="true"]) .a11y-opt-state::after { content:""; }
@@ -560,13 +560,13 @@
     .a11y-size { padding:5px 11px; font-size:12px; font-weight:600; border:1px solid #e2e8f0; background:#fff; color:#475569; border-radius:6px; cursor:pointer; }
     .a11y-size:hover { border-color:#94a3b8; color:#0f172a; }
     .a11y-size.active { background:#0f172a; color:#fff; border-color:#0f172a; }
-    .a11y-size:focus-visible { outline:2px solid #0066BA; outline-offset:2px; }
+    .a11y-size:focus-visible { outline:2px solid #416BA9; outline-offset:2px; }
     .a11y-modal-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid #e2e8f0; }
     .a11y-reset { padding:6px 12px; font-size:12px; font-weight:600; color:#475569; background:transparent; border:1px solid #e2e8f0; border-radius:7px; cursor:pointer; }
     .a11y-reset:hover { color:#0f172a; border-color:#94a3b8; }
     .a11y-done { padding:8px 18px; font-size:13px; font-weight:600; color:#fff; background:#0f172a; border:1px solid #0f172a; border-radius:7px; cursor:pointer; }
     .a11y-done:hover { background:#1e293b; }
-    .a11y-done:focus-visible, .a11y-reset:focus-visible { outline:2px solid #0066BA; outline-offset:2px; }
+    .a11y-done:focus-visible, .a11y-reset:focus-visible { outline:2px solid #416BA9; outline-offset:2px; }
     @keyframes a11yFadeIn { from { opacity:0; } to { opacity:1; } }
     @keyframes a11ySlideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
     /* User-preference overrides — scoped via data-attributes on <html>.
@@ -637,7 +637,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <a class="kern-logo-link" href="https://web.peralta.edu/" target="_blank" rel="noopener noreferrer" aria-label="Peralta Community College District">
-        <span class="kern-logo-mark" style="display:inline-flex;align-items:center;gap:8px;height:42px;color:#fff;font-family:var(--font-display);"><span style="background:var(--peralta-gold);color:#0a1a2f;font-weight:700;letter-spacing:0.04em;font-size:13px;padding:6px 10px;border-radius:6px;">PERALTA</span><span style="font-size:18px;font-weight:600;letter-spacing:0.02em;">CCD</span></span>
+        <img class="kern-logo-mark" src="PCCD-Logo-White-Horizontal.png" alt="Peralta Community College District" width="1200" height="336" />
       </a>
       <div class="logo-divider" aria-hidden="true"></div>
       <div class="logo-sub">Mentor Match Program<br/>&amp; Peer Mentoring</div>
@@ -2253,7 +2253,7 @@ let chartInstances = {};
 function destroyCharts() { Object.values(chartInstances).forEach(c => { try { c.destroy(); } catch(e){} }); chartInstances = {}; }
 function getChartColors() {
   return {
-    darkBlue:'#002F6D', medBlue:'#0066BA', lightBlue:'#40B4E5', gold:'#FFB600', darkGold:'#D18A00', darkGrey:'#555759',
+    darkBlue:'#004a88', medBlue:'#416BA9', lightBlue:'#5F8AC8', gold:'#AA9767', darkGold:'#D15E14', darkGrey:'#555759',
     grid: isDark ? 'rgba(64,180,229,0.1)' : 'rgba(0,47,109,0.08)',
     text: isDark ? '#A8B4CC' : '#555759',
     tick: isDark ? '#A8B4CC' : '#555759'
