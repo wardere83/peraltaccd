@@ -1126,7 +1126,7 @@
           <div class="card-header"><div class="card-title" data-i18n="spend_table_title" style="color:var(--peralta-yale);letter-spacing:-0.012em;">Spend-Down Detail</div><div class="chart-label" data-i18n="spend_table_sub" style="color:var(--text-muted);font-weight:500;">Peralta CCD &middot; Year-by-Year Allocation vs. Spend</div></div>
           <div class="data-table-wrap">
             <table class="data-table" id="spend-table">
-              <thead><tr><th data-i18n="th_period">Period</th><th class="num" data-i18n="th_period_budget">Period Budget</th><th class="num" data-i18n="th_share">Share of Total</th><th class="center" data-i18n="th_project_year">Project Year</th><th class="num" data-i18n="th_disbursed_pct">Spent So Far</th><th class="center" data-i18n="th_spend_pace">Spend Pace</th><th class="center" data-i18n="th_status">Status</th></tr></thead>
+              <thead><tr><th data-i18n="th_period">Period</th><th class="num" data-i18n="th_period_budget">Period Budget</th><th class="num" data-i18n="th_share">Share</th><th class="num" data-i18n="th_disbursed_pct">Spent So Far</th><th class="center" data-i18n="th_spend_pace">Pace</th><th class="center" data-i18n="th_status">Status</th></tr></thead>
               <tbody id="spend-table-body"></tbody>
             </table>
           </div>
@@ -2373,10 +2373,9 @@ function renderSpendDown() {
       // Header summary row: read-only totals for the year, no buttons (only line items carry Pace/Status)
       const headerRow =
         '<tr class="spend-year-row" data-year-key="' + p.id + '">' +
-          '<td style="border-left:4px solid ' + yearBandColor + ';padding-left:14px;width:200px;"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--peralta-yale);letter-spacing:-0.01em;line-height:1.25;">' + p.label + '</div><div style="font-size:11px;color:var(--text-muted);letter-spacing:0.01em;margin-top:2px;">' + p.dates + '</div></td>' +
+          '<td style="border-left:4px solid ' + yearBandColor + ';padding-left:12px;min-width:140px;"><div style="font-family:var(--font-display);font-size:13.5px;font-weight:700;color:var(--peralta-yale);letter-spacing:-0.01em;line-height:1.2;">' + p.label + '</div><div style="font-size:10.5px;color:var(--text-muted);letter-spacing:0.01em;margin-top:2px;">' + p.dates + '</div></td>' +
           '<td class="amount num" style="font-weight:700;">' + fmt(p.budget) + '</td>' +
           '<td class="amount num" style="font-weight:700;">' + pct + '% of total</td>' +
-          '<td class="center"><span style="font-size:11px;color:var(--text-muted);font-weight:700;">' + p.year + '</span></td>' +
           '<td colspan="3" class="center" style="font-size:10.5px;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">Year summary &middot; line items below</td>' +
         '</tr>';
       const lineRows = (p.lineItems || []).map((li, idx) => {
@@ -2394,10 +2393,9 @@ function renderSpendDown() {
           '<td style="padding-left:24px;border-left:4px solid ' + yearBandColor + ';opacity:0.98;">' + codeBadge + '<span style="font-size:12.5px;color:var(--text-primary);font-weight:500;">' + li.label + '</span></td>' +
           '<td class="amount num" style="font-size:12.5px;">' + fmt(li.amount) + '</td>' +
           '<td class="amount num" style="font-size:11.5px;color:var(--text-muted);">' + liPct + '%</td>' +
-          '<td class="center"><span style="font-size:11px;color:var(--text-muted);">part of ' + p.label + '</span></td>' +
           '<td><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%;background:var(--text-muted)"></div></div><span style="font-size:11px;color:var(--text-muted);">0.0%</span></td>' +
-          '<td class="center"><button onclick="togglePeriodPace(this,\'' + liId + '\')" data-pace="' + pace + '" style="background:' + paceColor + ';color:#fff;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;border:none;letter-spacing:0.04em;text-transform:uppercase;min-width:92px;display:inline-block;text-align:center;">' + paceText + '</button></td>' +
-          '<td class="center"><button onclick="togglePeriodStatus(this,\'' + liId + '\')" data-on="' + (isOffTrack?'0':'1') + '" style="background:' + statusColor + ';color:#fff;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;border:none;letter-spacing:0.04em;text-transform:uppercase;min-width:92px;display:inline-block;text-align:center;">' + statusText + '</button></td>' +
+          '<td class="center"><button onclick="togglePeriodPace(this,\'' + liId + '\')" data-pace="' + pace + '" style="background:' + paceColor + ';color:#fff;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;border:none;letter-spacing:0.04em;text-transform:uppercase;min-width:80px;display:inline-block;text-align:center;">' + paceText + '</button></td>' +
+          '<td class="center"><button onclick="togglePeriodStatus(this,\'' + liId + '\')" data-on="' + (isOffTrack?'0':'1') + '" style="background:' + statusColor + ';color:#fff;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;border:none;letter-spacing:0.04em;text-transform:uppercase;min-width:80px;display:inline-block;text-align:center;">' + statusText + '</button></td>' +
         '</tr>';
       }).join('');
       return headerRow + lineRows;
