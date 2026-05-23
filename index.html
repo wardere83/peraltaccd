@@ -220,8 +220,8 @@
     .card-body { padding:20px; }
     .data-table-wrap { overflow-x:auto; }
     .data-table { width:100%; font-size:13px; }
-    .data-table th { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); padding:11px 16px; text-align:left; border-bottom:2px solid var(--border); white-space:nowrap; background:var(--bg-surface-2); }
-    .data-table td { padding:11px 16px; border-bottom:1px solid var(--border); vertical-align:middle; }
+    .data-table th { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-secondary); padding:10px 14px; text-align:left; border-bottom:2px solid var(--border); white-space:nowrap; background:var(--bg-surface-2); }
+    .data-table td { padding:8px 14px; border-bottom:1px solid var(--border); vertical-align:middle; line-height:1.4; }
     .data-table tr:last-child td { border-bottom:none; }
     .data-table tr:hover td { background:var(--bg-surface-2); }
     .data-table .amount { font-family:var(--font-body); font-weight:600; font-size:13px; color:var(--ccc-dark-blue); }
@@ -2155,28 +2155,33 @@ function initCharts() {
 
 const KERN_PERIODS = [
   {
-    id:'y1', label:'Year 1', dates:'Jan 2026 – Jun 2027', budget:122638, year:'Year 1',
-    role:'Setup, Mentor & Match platform accounts purchases, training cohort 1 & mentorship launch (FY 2025-26 + FY 2026-27)',
+    id:'y1', label:'Year 1', dates:'Jan – Jun 2026', budget:34900, year:'Year 1',
+    role:'Platform launch + first mentor cohort',
     lineItems:[
-      { fy:'FY 2025-26', code:'4000', label:'Supplies & Materials — Mentor & Match platform accounts (Mentor & Match Professional Platform cohort)', amount:45000 },
-      { fy:'FY 2025-26', code:'7000', label:'Indirect costs — 5% of direct', amount:2238 },
-      { fy:'FY 2025-26', code:'5000', label:'Other Operating & Services — Mentor Match licensing & onboarding', amount:3497 },
-      { fy:'FY 2026-27', code:'1000', label:'Instructional Salaries — faculty stipends across 3 colleges', amount:26128 },
-      { fy:'FY 2026-27', code:'3000', label:'Employee Benefits — 21.7% fringe', amount:5659 },
-      { fy:'FY 2026-27', code:'4000', label:'Supplies & Materials — Mentor Match peripherals & lesson assets', amount:30000 },
-      { fy:'FY 2026-27', code:'5000', label:'Other Operating & Services — training facilitation & showcase', amount:6116 },
-      { fy:'FY 2026-27', code:'7000', label:'Indirect costs — 5% of direct', amount:4000 }
+      { fy:'FY 2025-26', code:'2000', label:'Non-Instructional Salaries — College Admin Program Oversight', amount:8400 },
+      { fy:'FY 2025-26', code:'3000', label:'Employee Benefits — District Oversight Staff', amount:1800 },
+      { fy:'FY 2025-26', code:'5000', label:'LIFT services — Platform, Coordination, Training, Tracking', amount:23039 },
+      { fy:'FY 2025-26', code:'7000', label:'Indirect — 5%', amount:1661 }
     ]
   },
   {
-    id:'y2', label:'Year 2', dates:'Jul 2027 – Jun 2028', budget:27362, year:'Year 2',
-    role:'Cohort 2 expansion, Unity / mentor coaching training & final showcase (FY 2027-28)',
+    id:'y2', label:'Year 2', dates:'Jul 2026 – Jun 2027', budget:32550, year:'Year 2',
+    role:'Mentor pairings + Mentorship Reflection Journal',
     lineItems:[
-      { fy:'FY 2027-28', code:'1000', label:'Instructional Salaries — mentor & innovation stipends', amount:6532 },
-      { fy:'FY 2027-28', code:'3000', label:'Employee Benefits — 21.7% fringe', amount:1415 },
-      { fy:'FY 2027-28', code:'4000', label:'Supplies & Materials — Mentor Match content creation tools ', amount:15750 },
-      { fy:'FY 2027-28', code:'5000', label:'Other Operating & Services — final showcase & dissemination', amount:2407 },
-      { fy:'FY 2027-28', code:'7000', label:'Indirect costs — 5% of direct', amount:1258 }
+      { fy:'FY 2026-27', code:'2000', label:'Non-Instructional Salaries — Program Oversight', amount:5300 },
+      { fy:'FY 2026-27', code:'3000', label:'Employee Benefits — Program Staff', amount:1150 },
+      { fy:'FY 2026-27', code:'5000', label:'LIFT services — Coordination, Training, Evaluation, Travel', amount:24550 },
+      { fy:'FY 2026-27', code:'7000', label:'Indirect — 5%', amount:1550 }
+    ]
+  },
+  {
+    id:'y3', label:'Year 3', dates:'Jul 2027 – Jun 2028', budget:32550, year:'Year 3',
+    role:'Culture-of-Care Awards + Impact Showcase',
+    lineItems:[
+      { fy:'FY 2027-28', code:'2000', label:'Non-Instructional Salaries — Program Oversight', amount:5300 },
+      { fy:'FY 2027-28', code:'3000', label:'Employee Benefits — Program Staff', amount:1150 },
+      { fy:'FY 2027-28', code:'5000', label:'LIFT services — Coordination, Travel, Showcase & Summit', amount:24550 },
+      { fy:'FY 2027-28', code:'7000', label:'Indirect — 5%', amount:1550 }
     ]
   }
 ];
@@ -2368,11 +2373,11 @@ function renderSpendDown() {
       // Header summary row: read-only totals for the year, no buttons (only line items carry Pace/Status)
       const headerRow =
         '<tr class="spend-year-row" data-year-key="' + p.id + '">' +
-          '<td style="border-left:4px solid ' + yearBandColor + ';padding-left:14px;"><strong style="font-family:var(--font-display);font-size:14px;color:var(--peralta-yale);letter-spacing:-0.01em;">' + p.label + '</strong><br><span style="font-size:11px;color:var(--text-muted);letter-spacing:0.01em;">' + p.dates + ' &middot; ' + p.role + '</span></td>' +
+          '<td style="border-left:4px solid ' + yearBandColor + ';padding-left:14px;width:200px;"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--peralta-yale);letter-spacing:-0.01em;line-height:1.25;">' + p.label + '</div><div style="font-size:11px;color:var(--text-muted);letter-spacing:0.01em;margin-top:2px;">' + p.dates + '</div></td>' +
           '<td class="amount num" style="font-weight:700;">' + fmt(p.budget) + '</td>' +
           '<td class="amount num" style="font-weight:700;">' + pct + '% of total</td>' +
           '<td class="center"><span style="font-size:11px;color:var(--text-muted);font-weight:700;">' + p.year + '</span></td>' +
-          '<td colspan="3" class="center" style="font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:0.02em;">Year-level summary &middot; line items carry their own pace &amp; status</td>' +
+          '<td colspan="3" class="center" style="font-size:10.5px;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">Year summary &middot; line items below</td>' +
         '</tr>';
       const lineRows = (p.lineItems || []).map((li, idx) => {
         const liId = p.id + '-li' + idx;
@@ -2386,7 +2391,7 @@ function renderSpendDown() {
         const paceColor = PACE_COLOR[pace];
         const paceText  = t('pace_' + pace);
         return '<tr class="spend-line-row" data-year-key="' + p.id + '">' +
-          '<td style="padding-left:32px;border-left:4px solid ' + yearBandColor + ';opacity:0.98;"><span style="display:inline-block;min-width:64px;font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;margin-right:6px;">' + li.fy + '</span>' + codeBadge + '<span style="font-size:12.5px;color:var(--text-primary);font-weight:500;">' + li.label + '</span></td>' +
+          '<td style="padding-left:24px;border-left:4px solid ' + yearBandColor + ';opacity:0.98;">' + codeBadge + '<span style="font-size:12.5px;color:var(--text-primary);font-weight:500;">' + li.label + '</span></td>' +
           '<td class="amount num" style="font-size:12.5px;">' + fmt(li.amount) + '</td>' +
           '<td class="amount num" style="font-size:11.5px;color:var(--text-muted);">' + liPct + '%</td>' +
           '<td class="center"><span style="font-size:11px;color:var(--text-muted);">part of ' + p.label + '</span></td>' +
