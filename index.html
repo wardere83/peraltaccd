@@ -408,7 +408,7 @@
 
     .contacts-subhead { font-family:var(--font-display); font-size:clamp(11px, 3.4vw, 18px); font-weight:700; color:var(--peralta-yale); letter-spacing:-0.012em; margin:24px 0 14px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .contacts-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px; align-items:stretch; padding:4px 0; }
-    .contact-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; transition:box-shadow var(--transition), border-color var(--transition); display:flex; gap:14px; align-items:stretch; box-shadow:var(--shadow-sm); min-height:250px; }
+    .contact-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; transition:box-shadow var(--transition), border-color var(--transition); display:flex; gap:14px; align-items:stretch; box-shadow:var(--shadow-sm); min-height:268px; }
     .contact-card:hover { box-shadow:var(--shadow-md); border-color:var(--ccc-medium-blue); }
     .contact-photo { position:relative; width:64px; height:64px; flex-shrink:0; border-radius:50%; overflow:hidden; background:linear-gradient(135deg, var(--tier1-bg) 0%, var(--bg-surface-2) 100%); }
     .contact-photo-initials { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:22px; font-weight:600; letter-spacing:-0.01em; color:var(--ccc-dark-blue); z-index:0; }
@@ -416,8 +416,8 @@
     .contact-photo img { width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; position:relative; z-index:1; }
     .contact-card-body { flex:1; min-width:0; display:flex; flex-direction:column; }
     .contact-card-name { font-family:var(--font-display); font-size:14.5px; font-weight:600; color:var(--text-primary); line-height:1.25; letter-spacing:-0.005em; margin:0 0 4px; min-height:18px; word-wrap:break-word; }
-    .contact-card-title { font-size:11.5px; color:var(--text-secondary); line-height:1.45; min-height:50px; }
-    .contact-card-role { display:block; align-self:stretch; text-align:center; font-size:9.5px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--ccc-medium-blue); margin-top:14px; padding:6px 10px; border:1px solid var(--ccc-medium-blue); border-radius:4px; line-height:1.3; }
+    .contact-card-title { font-size:11.5px; color:var(--text-secondary); line-height:1.45; min-height:64px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .contact-card-role { display:flex; align-items:center; justify-content:center; align-self:stretch; text-align:center; font-size:9.5px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--peralta-yale); margin-top:14px; padding:6px 10px; border:1px solid var(--peralta-yale); border-radius:4px; line-height:1.3; min-height:28px; }
     [data-theme="dark"] .contact-card-role { color:var(--accent-light); border-color:var(--accent-light); }
     .contact-card-divider { height:1px; background:var(--border); margin:12px 0 10px; }
     .contact-card-links { display:flex; flex-direction:column; gap:5px; min-width:0; }
@@ -1170,11 +1170,11 @@ const districts = [
       'Leadership Pipeline: ≥ 40% of Year-1 mentees advance to mentor roles in Year-2; classified staff hold ≥ 50% of campus liaison seats',
       'System Impact: PCCD participates in the LIFT Mentorship Impact Showcase & Summit, contributing data to the multi-region evaluation alongside Feather River and Sacramento City College'
     ],
-    contact:{name:'Jamille Teer',title:'Facilities Project Coordinator',role:'Project Lead',email:'jteer@peralta.edu',phone:'(510) 466-7342'},
+    contact:{name:'Jamille Teer',title:'Facilities Project Coordinator · Peralta CCD',role:'Project Lead',email:'jteer@peralta.edu',phone:'(510) 466-7342'},
     additionalContacts:[
-      {name:'Emily Kaplan',title:'Director of Grants Management',role:'Project Lead',email:'ekaplan@peralta.edu',phone:'(510) 599-4858'},
-      {name:'Andrea Epps',title:'Interim Vice Chancellor, HR',role:'Project Lead',email:'aepps@peralta.edu',phone:'(510) 466-7386'},
-      {name:'Dr. Tammeil Gilkerson',title:'Chancellor',role:'Senior Admin',email:'TGilkerson@peralta.edu',phone:'(510) 466-7200',photo:'photos/gilkerson.jpg'}
+      {name:'Emily Kaplan',title:'Director of Grants Management · Peralta CCD',role:'Project Lead',email:'ekaplan@peralta.edu',phone:'(510) 599-4858'},
+      {name:'Andrea Epps',title:'Interim Vice Chancellor, HR · Peralta CCD',role:'Project Lead',email:'aepps@peralta.edu',phone:'(510) 466-7386'},
+      {name:'Dr. Tammeil Gilkerson',title:'Chancellor · Peralta CCD',role:'Senior Admin',email:'TGilkerson@peralta.edu',phone:'(510) 466-7200',photo:'photos/gilkerson.jpg'}
     ],
     budgetHighlights:{'Non-Instructional Salaries (2000)':14000,'Employee Benefits (3000)':3500,'Other Operating Expenses and Services (5000)':77738,'Indirect Costs (7000)':4762},
     yearlyBudget:{y1:34900,y2:32550,y3:32550},
