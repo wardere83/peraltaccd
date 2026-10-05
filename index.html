@@ -1848,6 +1848,17 @@
 </div>
 
 <script>
+/* One-time copy of saved drafts off storage keys that were shared with other district dashboards on this origin */
+(function () {
+  try {
+    if (localStorage.getItem('peralta_keys_migrated_v1')) return;
+    [['eeo_grant_report_v1', 'peralta_eeo_grant_report_v1'], ['grant_mod_form_v1', 'peralta_grant_mod_form_v1'], ['kernPeriodStatuses', 'peraltaPeriodStatuses'], ['kernPeriodPaces', 'peraltaPeriodPaces'], ['kernYearFilter', 'peraltaYearFilter']].forEach(function (p) {
+      var v = localStorage.getItem(p[0]);
+      if (v !== null && localStorage.getItem(p[1]) === null) localStorage.setItem(p[1], v);
+    });
+    localStorage.setItem('peralta_keys_migrated_v1', '1');
+  } catch (e) {}
+})();
 /* ════════════════════════════════════════════════════════════════
    2-YEAR FUNDING CYCLE: Jan 1 2026 – Jun 30 2028
      Year 1: Jan 1, 2026 – Jun 30, 2027 (18 months)
@@ -3480,8 +3491,8 @@ const KERN_PERIODS = [
   }
 ];
 
-const periodStatuses = JSON.parse(localStorage.getItem('kernPeriodStatuses') || '{}');
-const periodPaces    = JSON.parse(localStorage.getItem('kernPeriodPaces')    || '{}');
+const periodStatuses = JSON.parse(localStorage.getItem('peraltaPeriodStatuses') || '{}');
+const periodPaces    = JSON.parse(localStorage.getItem('peraltaPeriodPaces')    || '{}');
 
 const PACE_CYCLE = ['slow','moderate','fast'];
 const PACE_COLOR = {
@@ -3493,12 +3504,12 @@ const PACE_LABEL = { slow:'Slow', moderate:'Moderate', fast:'Fast' };
 
 // Current year filter for the Underspend Risk Alerts ('all' | 'y1' | 'y2')
 let currentYearFilter = (function(){
-  try { return localStorage.getItem('kernYearFilter') || 'all'; } catch(e){ return 'all'; }
+  try { return localStorage.getItem('peraltaYearFilter') || 'all'; } catch(e){ return 'all'; }
 })();
 function setYearFilter(filter, btn) {
   if (filter !== 'all' && filter !== 'y1' && filter !== 'y2') filter = 'all';
   currentYearFilter = filter;
-  try { localStorage.setItem('kernYearFilter', filter); } catch(e){}
+  try { localStorage.setItem('peraltaYearFilter', filter); } catch(e){}
   document.body.setAttribute('data-year-filter', filter);
   document.querySelectorAll('.year-filter-tab').forEach(t => {
     const isActive = t.dataset.yearFilter === filter;
@@ -3526,7 +3537,7 @@ function getAllLineItems() {
 function togglePeriodStatus(btn, id) {
   const isNowOff = btn.dataset.on === '1';
   periodStatuses[id] = isNowOff ? 'off' : 'on';
-  localStorage.setItem('kernPeriodStatuses', JSON.stringify(periodStatuses));
+  localStorage.setItem('peraltaPeriodStatuses', JSON.stringify(periodStatuses));
   btn.dataset.on = isNowOff ? '0' : '1';
   btn.style.background = isNowOff ? '#c53030' : '#1a7a3c';
   btn.textContent = isNowOff ? t('status_off') : t('status_on');
@@ -3538,7 +3549,7 @@ function togglePeriodPace(btn, id) {
   const idx = PACE_CYCLE.indexOf(current);
   const next = PACE_CYCLE[(idx + 1) % PACE_CYCLE.length];
   periodPaces[id] = next;
-  localStorage.setItem('kernPeriodPaces', JSON.stringify(periodPaces));
+  localStorage.setItem('peraltaPeriodPaces', JSON.stringify(periodPaces));
   btn.dataset.pace = next;
   btn.style.background = PACE_COLOR[next];
   btn.textContent = t('pace_' + next);
@@ -3716,7 +3727,7 @@ function renderAll() {
 
 /* ════════════ FORMS TAB: grant form, report form, budget+report video guides (ported) ════════════ */
 /* ════════════ GRANT MODIFICATION REQUEST FORM (Forms tab) ════════════ */
-const GMR_STORE = 'grant_mod_form_v1';
+const GMR_STORE = 'peralta_grant_mod_form_v1';
 function gmrLoad() { try { return JSON.parse(localStorage.getItem(GMR_STORE)) || {}; } catch (e) { return {}; } }
 function gmrSave(s) { try { localStorage.setItem(GMR_STORE, JSON.stringify(s)); } catch (e) {} }
 function gmrEsc(v) { return v == null ? '' : String(v).replace(/"/g, '&quot;'); }
@@ -3942,7 +3953,7 @@ async function submitGmrForm() {
 
 
 /* ════════════ EEO IBP GRANT REPORT (interactive, mirrors the online form) ════════════ */
-const RPT_STORE = 'eeo_grant_report_v1';
+const RPT_STORE = 'peralta_eeo_grant_report_v1';
 function rptLoad() { try { return JSON.parse(localStorage.getItem(RPT_STORE)) || {}; } catch (e) { return {}; } }
 function rptSave(s) { try { localStorage.setItem(RPT_STORE, JSON.stringify(s)); } catch (e) {} }
 function rptEsc(v) { return v == null ? '' : String(v).replace(/"/g, '&quot;'); }
